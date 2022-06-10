@@ -25,7 +25,7 @@ def game_scene():
     game.render_block()
 
     # repeate forever
-    while true 
+    while True: 
         pass #just aplace holder 
 
 
