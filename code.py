@@ -14,11 +14,14 @@ def game_scene():
 
     # set the background to images 0 in the image bank
     # and set the size (10x8 tiles of size 16x16)
-    background = stage.grid(image_bank_background, 10, 8)
+    background = stage.Grid(image_bank_background, 10, 8)
 
     # create a stage fro the background to show up on 
     # set frame rate tp 60fps
     games = stage.Stage(ugame.display, 60)
+
+    #set all layers of sprites, items show up in order 
+    game.layers = [background]
 
     #render all sprites 
     # most likey you'll only render the background once per game 
