@@ -7,6 +7,9 @@
 import ugame
 import stage 
 
+import constants
+
+
 def game_scene():
 
     # image bank for CircuitPython
@@ -15,14 +18,14 @@ def game_scene():
 
     # set the background to images 0 in the image bank
     # and set the size (10x8 tiles of size 16x16)
-    background = stage.Grid(image_bank_background, 10, 8)
+    background = stage.Grid(image_bank_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
 
     # a sprite that will be updated every frame
     ship = stage.Sprite(image_bank_sprites, 5 , 75, 66)
 
     # create a stage fro the background to show up on 
     # set frame rate tp 60fps
-    games = stage.Stage(ugame.display, 60)
+    games = stage.Stage(ugame.display, constants.FPS)
 
     #set all layers of sprites, items show up in order 
     games.layers = [ship] + [background]
@@ -33,25 +36,32 @@ def game_scene():
 
     # repeate forever
     while True: 
-        #get user input 
+        # when butten are pressed this will extcute 
         keys  = ugame.buttons.get_pressed()
 
         if keys & ugame.K_X:
-            print ("A")
+            pass
         if keys & ugame.K_O:
-            print ("B")
+            pass
         if keys & ugame.K_START:
-            print ("Start")
+            pass
         if keys & ugame.K_SELECT:
-            print ("Select")
+            pass
         if keys & ugame.K_RIGHT:
-            ship.move(ship.x + 1, ship.y)
+            if ship.x >= constants.SCREEN_X - constants.SPRITE_SIZE:
+                ship.move(ship.x + 1, ship.y)   
+            else:
+                ship.move(constants.SCREEN_X - constants.SPRITE_SIZE, ship.y)  
         if keys & ugame.K_LEFT:
-            ship.move(ship.x - 1, ship.y)   
+            if ship.x >= 0:
+                ship.move(ship.x - 1, ship.y)   
+            else:
+                ship.move ( 0, ship.y)
+
         if keys & ugame.K_UP:
-            ship.move(ship.x, ship.y - 1)     
+            pass
         if keys & ugame.K_DOWN:
-            ship.move(ship.x, ship.y + 1)    
+            pass  
             
         # udate game logic
 
