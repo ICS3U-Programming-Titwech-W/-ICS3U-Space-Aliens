@@ -13,3 +13,11 @@ SPRITE_SIZE = 16
 TOTAL_NUMBER_OF_ALIENS = 5
 FPS = 60
 SPRITE_MOVMENT_SPEED = 1
+
+# using button state 
+button_state = {
+    "button_up": "up",
+    "button _just pressed": "just pressed",
+    "button_still_pressed": "still pressed",
+    "button relesed":"released"
+}
