@@ -59,8 +59,8 @@ def game_scene():
         if keys & ugame.K_O != 0:
             if a_button == constants.button_state["button_up"]:
                 a_button =  constants.button_state["button_just_pressed"]
-                sound.play(pew_sound)
             elif a_button == constants.button_state["button_just_pressed"]:
+                sound.play(pew_sound)
                 a_button = constants.button_state["button_still_pressed"]
             else:
                 if a_button ==  constants.button_state["button_still_pressed"]:
