@@ -18,15 +18,15 @@ def game_scene():
 
     # buttons that you want to keep state info on 
     a_button = constants.button_state["button_up"]
-    b_button = constants.button_state["button up"]
+    b_button = constants.button_state["button_up"]
     start_button = constants.button_state["button_up"]
     select_button = constants.button_state["button_up"] 
 
     # get sound ready 
-    # pew_sound = open("pew.wav", 'rb')
-    # sound = ugame.audio
-    #sound.stop()
-    #sound.mute(False)
+    pew_sound = open("pew.wav", 'rb')
+    sound = ugame.audio
+    sound.stop()
+    sound.mute(False)
 
 
     # set the background to images 0 in the image bank
@@ -39,7 +39,7 @@ def game_scene():
     alien = stage.Sprite(image_bank_sprites, 9, 
                      int(constants.SCREEN_X / 2 - constants. SPRITE_SIZE / 2), 16)
 
-    # create a stage fro the background to show up on 
+    # create a stage for the background to show up on 
     # set frame rate tp 60fps
     games = stage.Stage(ugame.display, constants.FPS)
 
@@ -58,14 +58,14 @@ def game_scene():
         # A button to fire 
         if keys & ugame.K_O != 0:
             if a_button == constants.button_state["button_up"]:
-                a_button ==  constants.button_state["button_just_pressed"]
+                a_button =  constants.button_state["button_just_pressed"]
             elif a_button == constants.button_state["button_just_pressed"]:
-                a_button == constants.button_state["button_sill_pressed"]
+                a_button = constants.button_state["button_still_pressed"]
             else:
                 if a_button ==  constants.button_state["button_still_pressed"]:
-                    a_button ==  constants.button_state["button_released"]
+                    a_button =  constants.button_state["button_relesed"]
                 else:
-                    a_button == constants.button_state["button_up"]
+                    a_button = constants.button_state["button_up"]
 
         # pass will make sure nothing happens when button is pressed
         if keys & ugame.K_X:
@@ -95,6 +95,9 @@ def game_scene():
             pass  
             
         # udate game logic
+        # play sound if button was just pressed 
+        if a_button == constants.button_state["button_just_pressed"]:
+            sound.play(pew_sound)
 
         # redraw sprites
         games.render_sprites([ship] + [alien])
