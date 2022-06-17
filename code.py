@@ -10,6 +10,53 @@ import stage
 import constants
 
 
+def menu_scene():
+
+    # image bank for CircuitPython
+    image_bank_mt_background = stage.Bank.from_bmp16("mt_game_studio.bmp")
+
+    # add text objects 
+    text = []
+    text1 = stage.Text(width= 29, height = 12, font = None, palette = constants.RED_PALETTE , buffer=None)
+    text1.move(20, 10)
+    text1.text("MT Game Studios")
+    text.append(text1)
+
+    text2 = stage.Text(width= 29, height = 12, font = None, palette = constants.RED_PALETTE , buffer=None)
+    text2.move(40, 110)
+    text2.text("PRESS START")
+    text.append(text2)
+
+    # set the background to images 0 in the image bank
+    # and set the size (10x8 tiles of size 16x16)
+    background = stage.Grid(image_bank_mt_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+
+
+
+    # create a stage for the background to show up on 
+    # set frame rate tp 60fps
+    games = stage.Stage(ugame.display, constants.FPS)
+
+    #set all layers of sprites, items show up in order 
+    games.layers = text + [background]
+
+    #render all sprites 
+    # most likey you'll only render the background once per game 
+    games.render_block()
+
+    # repeate forever
+    while True: 
+        # when butten are pressed this will extcute 
+        keys  = ugame.buttons.get_pressed()
+
+        # A button to fire 
+    
+        if keys & ugame.K_START:
+            pass
+
+        # redraw sprites
+        games.tick()
+
 def game_scene():
 
     # image bank for CircuitPython
@@ -100,7 +147,6 @@ def game_scene():
         games.render_sprites([ship] + [alien])
         games.tick()
 
-
 if __name__ =="__main__":
-        game_scene()
+        menu_scene()
 
