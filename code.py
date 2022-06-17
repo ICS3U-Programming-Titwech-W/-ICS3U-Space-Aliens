@@ -158,12 +158,20 @@ def game_scene():
     alien = stage.Sprite(image_bank_sprites, 9, 
                      int(constants.SCREEN_X / 2 - constants. SPRITE_SIZE / 2), 16)
 
+    # Create a list of laser for when we shoot
+    lasers = []
+    for laser_number in range (constants.TOTAL_NUMBER_OF_LASERS):
+            a_single_laser = stage.Sprite(image_bank_sprites, 10, constants.OFF_SCEEN_X, constants.OFF_SCEEN_Y)
+
+            lasers.append(a_single_laser)
+
+
     # create a stage for the background to show up on 
     # set frame rate tp 60fps
     games = stage.Stage(ugame.display, constants.FPS)
 
     #set all layers of sprites, items show up in order 
-    games.layers = [ship] + [alien] + [background]
+    games.layers = lasers +[ship] + [alien] + [background]
 
     #render all sprites 
     # most likey you'll only render the background once per game 
@@ -213,6 +221,10 @@ def game_scene():
             pass
         if keys & ugame.K_DOWN:
             pass  
+
+        # fire a laese, if we have enough power
+        
+
             
 
         # redraw sprites
